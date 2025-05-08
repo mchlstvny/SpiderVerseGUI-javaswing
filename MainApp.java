@@ -19,6 +19,7 @@ public class MainApp {
 
     void createAndShowGUI() {
         JFrame frame = new JFrame("Spider-Verse Characters");
+        frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.setLayout(new BorderLayout());
