@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-import Multiverse.MilesMultiverse;
 import java.awt.*;
 
 public class MainApp {
@@ -19,7 +18,7 @@ public class MainApp {
 
     void createAndShowGUI() {
         JFrame frame = new JFrame("Spider-Verse Characters");
-        frame.setUndecorated(true);
+        // frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.setLayout(new BorderLayout());
@@ -38,12 +37,6 @@ public class MainApp {
         gadgetsPanel = new GadgetsPanel();
         guidesPanel = new GuidesPanel();
         toolsPanel = new ToolsPanel();
-
-        // Instace for Multiverse character panels
-        MilesMultiverse milesPanel = new MilesMultiverse();
-
-        // Add character panels to the multiverse panel
-        multiversePanel.addCharacterPanel("Miles", milesPanel);
 
         // All content panels
         mainContentPanel.add(new HomePanel(), "Home");

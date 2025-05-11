@@ -1,4 +1,7 @@
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import java.awt.*;
 
 public class SidebarPanel extends JPanel {
@@ -12,6 +15,8 @@ public class SidebarPanel extends JPanel {
             "Guides",
             "Tools"
     };
+    private final Color buttonHoverColor = new Color(50, 50, 50); // Define hover color
+    private final Color buttonBackgroundColor = Color.GRAY; // Define default background color
 
     public SidebarPanel(CardLayout cardLayout, JPanel mainContentPanel) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -35,6 +40,21 @@ public class SidebarPanel extends JPanel {
 
             // Action listener to switch panels
             btn.addActionListener(e -> cardLayout.show(mainContentPanel, item));
+
+            // Mouse listener for hover effect
+            btn.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    btn.setBackground(buttonHoverColor);
+                    btn.repaint(); // Ensure the background updates immediately
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    btn.setBackground(buttonBackgroundColor);
+                    btn.repaint(); // Ensure the background updates immediately
+                }
+            });
 
             add(btn);
             add(Box.createRigidArea(new Dimension(0, 10)));
