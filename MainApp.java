@@ -1,16 +1,9 @@
 import javax.swing.*;
-
 import java.awt.*;
 
 public class MainApp {
     private CardLayout cardLayout;
     private JPanel mainContentPanel;
-    private MultiversePanel multiversePanel; 
-    private AlliesPanel alliesPanel;
-    private EnemiesPanel enemiesPanel;
-    private GadgetsPanel gadgetsPanel;
-    private GuidesPanel guidesPanel;
-    private ToolsPanel toolsPanel;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new MainApp().createAndShowGUI());
@@ -18,7 +11,6 @@ public class MainApp {
 
     void createAndShowGUI() {
         JFrame frame = new JFrame("Spider-Verse Characters");
-        // frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 800);
         frame.setLayout(new BorderLayout());
@@ -26,33 +18,25 @@ public class MainApp {
         // Top navbar
         frame.add(new NavbarPanel(), BorderLayout.NORTH);
 
-        // Center panel 
+        // Center panel
         cardLayout = new CardLayout();
         mainContentPanel = new JPanel(cardLayout);
 
-        // Instance
-        multiversePanel = new MultiversePanel();
-        alliesPanel = new AlliesPanel(); 
-        enemiesPanel = new EnemiesPanel();
-        gadgetsPanel = new GadgetsPanel();
-        guidesPanel = new GuidesPanel();
-        toolsPanel = new ToolsPanel();
-
-        // All content panels
+        // Add panels
         mainContentPanel.add(new HomePanel(), "Home");
-        mainContentPanel.add(new CharacterGridPanel(), "Characters");
-        mainContentPanel.add(multiversePanel, "Multiverse"); 
-        mainContentPanel.add(alliesPanel, "Allies"); 
-        mainContentPanel.add(enemiesPanel, "Enemies"); 
-        mainContentPanel.add(gadgetsPanel, "Gadgets"); 
-        mainContentPanel.add(guidesPanel, "Guides");
-        mainContentPanel.add(toolsPanel, "Tools");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getSpiderVerseCharacters()), "Characters");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getMultiverseCharacters()), "Multiverse");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getAlliesCharacters()), "Allies"); // Perbaikan nama tab
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getEnemiesCharacters()), "Enemies");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getGadgets()), "Gadgets");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getGuides()), "Guides");
+        mainContentPanel.add(new CharacterGridPanel(CharacterData.getTools()), "Tools");
 
-        // Add sidebar, pass cardLayout dan mainContentPanel 
+        // Sidebar
         frame.add(new SidebarPanel(cardLayout, mainContentPanel), BorderLayout.WEST);
         frame.add(mainContentPanel, BorderLayout.CENTER);
 
-        // Set HomePanel as default
+        // Default panel
         cardLayout.show(mainContentPanel, "Home");
 
         frame.setVisible(true);

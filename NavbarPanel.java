@@ -11,9 +11,9 @@ public class NavbarPanel extends JPanel {
         title.setForeground(Color.WHITE);
         title.setFont(new Font("Arial", Font.BOLD, 18));
 
-        // Tetapkan warna langsung di sini
-        JButton discordBtn = createNavButton("Join Discord", new Color(229, 57, 53)); 
-        JButton koFiBtn = createNavButton("Buy us a Ko-Fi", new Color(57, 73, 171));     
+        // Gunakan kelas tombol terpisah
+        JButton discordBtn = new DiscordBtn();
+        JButton koFiBtn = new KoFiBtn();
 
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 0));
         buttonPanel.setOpaque(false);
@@ -37,17 +37,5 @@ public class NavbarPanel extends JPanel {
         topBar.add(buttonPanel, gbc);
 
         add(topBar, BorderLayout.CENTER);
-    }
-
-    private JButton createNavButton(String text, Color bgColor) {
-        JButton btn = new JButton(text);
-        btn.setFocusPainted(false);
-        btn.setBorderPainted(false);
-        btn.setContentAreaFilled(false); 
-        btn.setOpaque(true);          
-        btn.setBackground(bgColor);     
-        btn.setForeground(Color.WHITE);
-        btn.setFont(new Font("Arial", Font.PLAIN, 12));
-    return btn;
     }
 }
